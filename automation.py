@@ -72,11 +72,14 @@ def create_folder(console):
             if folder_confirm.lower() == "y":
                 break
 
-    os.mkdir(folder_name)
-    if os.path.exists(folder_name):
-        console.print(f"\nThe folder [yellow]{folder_name}[/yellow] has been created\n")
-    else:
-        print("Something did not work.")
+    try:
+        os.mkdir(folder_name)
+        if os.path.exists(folder_name):
+            console.print(f"\nThe folder [yellow]{folder_name}[/yellow] has been created\n")
+        else:
+            print("\nelse Something did not work.\n")
+    except OSError:
+        print("\nexcept Something did not work.\n")
 
 
 def delete_user():
