@@ -14,7 +14,7 @@ def main():
     if user_task == "1":
         create_folder(console)
     elif user_task == "2":
-        delete_user()
+        delete_user(console)
     elif user_task == "3":
         sort_docs()
     elif user_task == "4":
@@ -38,52 +38,76 @@ def task_selection(console):
                                f"[cyan]3.[/cyan] {task_desc.get('3')}\n"
                                f"[cyan]4.[/cyan] {task_desc.get('4')}\n\n"
                                f"Enter the # for your selection")
-        task_confirm = Prompt.ask(f"\nYou selected: [yellow]{user_task}. {task_desc.get(user_task)}[/yellow]\nConfirm "
-                                  f"your choice ([cyan]Y[/cyan]es or [cyan]N[/cyan]o)")
 
-        if task_confirm.lower() == "y":
-            return user_task
-        else:
-            os.system('clear')
+        # task_confirm = Prompt.ask(f"\nYou selected: [yellow]{user_task}. {task_desc.get(user_task)}[/yellow]\nConfirm "
+        #                           f"your choice ([cyan]Y[/cyan]es or [cyan]N[/cyan]o)")
+        # if task_confirm.lower() == "y":
+        #     return user_task
+        # else:
+        #     os.system('clear')
+
+        return user_task
 
 
-def create_folder(console):
+def create_folder(console, folder_name=str()):
     name_test = False
-    folder_name = str()
 
-    while not name_test:
-        os.system('clear')
-        folder_name = Prompt.ask("[chartreuse3]Make a new folder[/chartreuse3]\nWhat do you want to name your new "
-                                 "folder?\n\nThe default name = [cyan]temp[/cyan]")
-        if folder_name == "":
-            folder_name = "temp"
+    if not folder_name:
+        while not name_test:
+            os.system('clear')
+            folder_name = Prompt.ask("[chartreuse3]Make a new folder[/chartreuse3]\nWhat do you want to name your new "
+                                     "folder?\n\nThe default name = [cyan]temp[/cyan]")
+            if folder_name == "":
+                folder_name = "temp"
 
-        name_test = os.path.exists(folder_name)
+            name_test = os.path.exists(folder_name)
 
-        if name_test:
-            Prompt.ask(f"\nThe name, [yellow]{folder_name}[/yellow], is already in use. Enter [cyan]any[/cyan] key to "
-                       f"try again")
-            print("pre name_test", name_test)
-            name_test = False
-            print("post name_test", name_test)
-        else:
-            folder_confirm = Prompt.ask(f"\nYou entered: [yellow]{folder_name}[/yellow]\nConfirm "
-                                        f"your choice ([cyan]Y[/cyan]es or [cyan]N[/cyan]o)")
-            if folder_confirm.lower() == "y":
-                break
+            if name_test:
+                Prompt.ask(f"\nThe name, [yellow]{folder_name}[/yellow], is already in use. Enter [cyan]any[/cyan] "
+                           f"key to try again")
+                print("pre name_test", name_test)
+                name_test = False
+                print("post name_test", name_test)
+            else:
+                folder_confirm = Prompt.ask(f"\nYou entered: [yellow]{folder_name}[/yellow]\nConfirm "
+                                            f"your choice ([cyan]Y[/cyan]es or [cyan]N[/cyan]o)")
+                if folder_confirm.lower() == "y":
+                    break
 
-    try:
-        os.mkdir(folder_name)
-        if os.path.exists(folder_name):
-            console.print(f"\nThe folder [yellow]{folder_name}[/yellow] has been created\n")
-        else:
-            print("\nelse Something did not work.\n")
-    except OSError:
-        print("\nexcept Something did not work.\n")
+        try:
+            os.mkdir(folder_name)
+            if os.path.exists(folder_name):
+                console.print(f"\nThe folder [yellow]{folder_name}[/yellow] has been created\n")
+            else:
+                print("\nelse Something did not work.\n")
+        except OSError:
+            print("\nexcept Something did not work.\n")
+
+    else:
+        try:
+            os.mkdir(folder_name)
+            if os.path.exists(folder_name):
+                return True
+            else:
+                print("\nelse Something did not work.\n")
+                return False
+        except:
+            print("\nexcept Something did not work.\n")
+            return False
 
 
-def delete_user():
-    pass
+def delete_user(console):
+    os.system('clear')
+    console.print(f"[red]So you want to delete a user? Does that make you feel powerful?[/red]")
+
+    users = sorted(os.listdir("./user-docs"))
+    table = Table(title=f"Users n [cyan]user-docs[/cyan]")
+    table.add_column("User Name")
+    for user in users:
+        table.add_row(user)
+    console.print(table)
+
+
 
 
 def sort_docs():
