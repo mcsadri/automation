@@ -1,8 +1,5 @@
-import os
 import shutil
-from rich.console import Console
 from rich.prompt import Prompt
-from rich.table import Table
 
 
 def reset(console):
@@ -29,3 +26,5 @@ def reset(console):
         shutil.rmtree("deleted-users")
     except:
         pass
+
+    Prompt.ask(f"\nThe folders have been reset for testing. Enter [cyan]any[/cyan] key to return to menu")

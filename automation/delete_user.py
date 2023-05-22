@@ -28,9 +28,10 @@ def delete_user(console):
                 if "-deleted" not in user_to_del:
                     break
                 else:
-                    Prompt.ask(
-                        f"\n[yellow]That user has already been deleted[/yellow]. Enter [cyan]any[/cyan] key to try "
-                        f"again")
+                    prompt = Prompt.ask(f"\n[yellow]That user has already been deleted[/yellow]. Enter [cyan]any["
+                                        f"/cyan] key to try again, or [cyan]Q[/cyan] to quit to menu")
+                    if prompt.lower() == "q":
+                        return
         else:
             Prompt.ask(f"\n[yellow]{selected_row}[/yellow], is not a valid entry. Enter [cyan]any[/cyan] key to try "
                        f"again")
@@ -61,9 +62,7 @@ def delete_user(console):
     users = sorted(os.listdir(path))
     os.system('clear')
     print_users_table(console, users, path)
-    console.print(f"\n[yellow]User {user_to_del} has been deleted[/yellow]\n")
-
-    return
+    Prompt.ask(f"\nUser [yellow]{user_to_del}[/yellow] has been deleted. Enter [cyan]any[/cyan] key to return to menu")
 
 
 def print_users_table(console, users, path):

@@ -3,7 +3,8 @@ import shutil
 from rich.console import Console
 from rich.prompt import Prompt
 from rich.table import Table
+from delete_user import print_users_table
 
 
-def sort_docs():
+def sort_docs(console):
     pass
