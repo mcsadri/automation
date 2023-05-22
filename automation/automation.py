@@ -8,6 +8,7 @@ from delete_user import delete_user
 from sort_docs import sort_docs
 from parse_logs import parse_logs
 from tbd import tbd
+from reset import reset
 
 
 def main():
@@ -26,6 +27,8 @@ def main():
         parse_logs()
     elif user_task == "5":
         tbd()
+    elif user_task == "6":
+        reset()
     else:
         task_selection(console)
 
