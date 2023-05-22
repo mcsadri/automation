@@ -28,7 +28,7 @@ def main():
     elif user_task == "5":
         tbd()
     elif user_task == "6":
-        reset()
+        reset(console)
     else:
         task_selection(console)
 
@@ -40,6 +40,7 @@ def task_selection(console):
         "3": "Sort documents",
         "4": "Parse logs",
         "5": "TBD",
+        "6": "Reset folders for testing",
     }
 
     while True:
@@ -48,7 +49,8 @@ def task_selection(console):
                                f"[cyan]2.[/cyan] {task_desc.get('2')}\n"
                                f"[cyan]3.[/cyan] {task_desc.get('3')}\n"
                                f"[cyan]4.[/cyan] {task_desc.get('4')}\n"
-                               f"[cyan]5.[/cyan] {task_desc.get('5')}\n\n"
+                               f"[cyan]5.[/cyan] {task_desc.get('5')}\n"
+                               f"[cyan]6.[/cyan] {task_desc.get('6')}\n\n"
                                f"Enter the # for your selection")
 
         # task_confirm = Prompt.ask(f"\nYou selected: [yellow]{user_task}. {task_desc.get(user_task)}[/yellow]\nConfirm "

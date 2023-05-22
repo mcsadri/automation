@@ -47,3 +47,5 @@ def create_folder(console, folder_name=str()):
         except:
             print("\nexcept Something did not work.\n")
             return False
+
+    return

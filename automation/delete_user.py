@@ -36,13 +36,13 @@ def delete_user(console):
                        f"again")
 
     # create deleted_users folder if it doesn't already exist
-    deleted_path = "deleted_users"
+    deleted_path = "deleted-users"
     name_test = os.path.exists(deleted_path)
     if not name_test:
         create_folder(console, deleted_path)
 
     # create the user folder for the deleted user in the deleted_users folder
-    deleted_path = "deleted_users"
+    deleted_path = "deleted-users"
     name_test = os.path.exists(deleted_path + "/" + user_to_del)
     if not name_test:
         create_folder(console, deleted_path + "/" + user_to_del)
@@ -62,6 +62,8 @@ def delete_user(console):
     os.system('clear')
     print_users_table(console, users, path)
     console.print(f"\n[yellow]User {user_to_del} has been deleted[/yellow]\n")
+
+    return
 
 
 def print_users_table(console, users, path):
