@@ -14,6 +14,7 @@ def delete_user(console):
     while True:
         os.system('clear')
         console.print(f"[red]So you want to delete a user? Does that make you feel powerful?[/red]\n")
+        # https://www.youtube.com/watch?v=m6xukx6hloE
 
         users = sorted(os.listdir(path))
 
