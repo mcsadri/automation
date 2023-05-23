@@ -1,9 +1,5 @@
-import os
-import shutil
-from rich.console import Console
 from rich.prompt import Prompt
-from rich.table import Table
 
 
 def parse_logs(console):
-    pass
+    Prompt.ask(f"\nThis feature is still in development. Enter [cyan]any[/cyan] key to return to menu")
